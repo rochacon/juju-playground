@@ -1,0 +1,8 @@
+name: hello
+summary: Hello World app for testing
+description: |
+    Testing JuJu habilities
+provides:
+  wsgi-file:
+    interface: wsgi
+    scope: container

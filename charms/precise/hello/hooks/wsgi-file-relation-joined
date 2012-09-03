@@ -1,0 +1,9 @@
+#!/bin/bash
+set -eux 
+
+UNIT_NAME=${JUJU_UNIT_NAME//\//_}
+
+juju-log "wsgi-file-relation-joined"
+relation-set working_dir="/srv/$UNIT_NAME"
+relation-set wsgi_file="wsgi"
+

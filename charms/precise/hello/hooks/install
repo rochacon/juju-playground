@@ -1,0 +1,37 @@
+#!/bin/bash
+set -eu
+
+UNIT_NAME=${JUJU_UNIT_NAME//\//_}
+CHARM_PATH=$(dirname $0)/..
+
+juju-log "Charm path of '$JUJU_UNIT_NAME'? $CHARM_PATH"
+
+sudo apt-get install --no-install-recommends -y git python-distribute
+easy_install pip
+
+juju-log "Deploying hello app"
+
+# Ignore checking for git host
+mkdir -p ~/.ssh
+if [ ! -e "~/.ssh/config" ]; then
+    cat > ~/.ssh/config <<EOF
+Host 192.168.122.1
+StrictHostKeyChecking no
+UserKnownHostsFile /dev/null
+EOF
+    cp $CHARM_PATH/keys/id_rsa* ~/.ssh/
+    chmod 700 ~/.ssh
+    chmod 600 ~/.ssh/*
+fi
+
+# Clone app and install dependencies
+mkdir -p /srv/$UNIT_NAME
+cd /srv/$UNIT_NAME
+
+if [ ! -d ".git" ]; then
+    git clone vagrant@192.168.122.1:/home/vagrant/app/.git .
+fi
+pip install -U -r requirements.txt
+
+juju-log "App deployed"
+

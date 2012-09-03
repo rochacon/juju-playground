@@ -1,0 +1,9 @@
+options:
+    wsgi_wsgi_file:
+        type: string
+        default: "app"
+        description: "The name of the WSGI application."
+    wsgi_workers:
+        type: int
+        default: 2
+        description: "The number of worker process for handling requests."
