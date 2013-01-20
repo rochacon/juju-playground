@@ -11,3 +11,8 @@ def testing():
 def it_works():
     return 'JuJu powered server w/ charm upgrading.', 202
 
+
+@application.route('/rocks')
+def juju_rocks():
+    return 'JuJu rocks!!'
+
