@@ -1,7 +1,7 @@
 #!/bin/bash
-set -eux
 
-home=$(dirname $0)
-
-$home/install
+juju-log "Starting upgrading."
+./install
+./restart
+juju-log "Finished upgrading."
 

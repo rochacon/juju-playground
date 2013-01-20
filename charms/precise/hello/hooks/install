@@ -1,15 +1,14 @@
 #!/bin/bash
-set -eu
 
 UNIT_NAME=${JUJU_UNIT_NAME//\//_}
 CHARM_PATH=$(dirname $0)/..
 
-juju-log "Charm path of '$JUJU_UNIT_NAME'? $CHARM_PATH"
+juju-log "Charm path of '$JUJU_UNIT_NAME'? $CHARM_PATH."
 
 sudo apt-get install --no-install-recommends -y git python-distribute
 easy_install pip
 
-juju-log "Deploying hello app"
+juju-log "Deploying hello app."
 
 # Ignore checking for git host
 mkdir -p ~/.ssh
@@ -35,5 +34,5 @@ else
 fi
 pip install -U -r app/requirements.txt
 
-juju-log "App deployed"
+juju-log "App deployed."
 
