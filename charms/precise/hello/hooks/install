@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eux
 
 UNIT_NAME=${JUJU_UNIT_NAME//\//_}
 CHARM_PATH=$(dirname $0)/..

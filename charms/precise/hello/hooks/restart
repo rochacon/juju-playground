@@ -1,5 +1,4 @@
 #!/bin/bash
 
-./stop
-./start
+service gunicorn restart
 
